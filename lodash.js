@@ -14,6 +14,7 @@
  * 13. debounce()
  * 14. throttle()
  * 15. isEqual(): shallow comparison
+ * 16. isArray()
  */
 import _ from "lodash";
 
