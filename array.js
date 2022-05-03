@@ -76,3 +76,44 @@ export const findLongestWordReduce = (wordList) => {
     currentWord.length > longestWord.length ? currentWord : longestWord
   );
 };
+
+function getIntersectionSet(set1, set2) {
+  const intersectionSet = new Set();
+  for (const item of set1) {
+    if (set2.has(item)) intersectionSet.add(item);
+  }
+  return intersectionSet;
+}
+
+function uniqueNumbers(numberList) {
+  if (!Array.isArray(numberList) || numberList.length === 0) return [];
+  const uniqueNumberSet = new Set(numberList);
+  // return Array.from(uniqueNumberSet);
+  return [...uniqueNumberSet];
+}
+
+const cityList = [
+  { id: 1, name: "TP. Hồ Chí Minh" },
+  { id: 2, name: "TP. Phan Thiết" },
+];
+
+const studentList = [
+  { id: 123, name: "Alice", cityId: 1 },
+  { id: 321, name: "Bob", cityId: 2 },
+];
+
+// Question: how to show city name for each student?
+// using forEach
+// const cityMap = new Map();
+// cityList.forEach((city) => {
+//   cityMap.set(city.id, city);
+// });
+
+// or using reduce
+const cityMap = cityList.reduce((map, city) => {
+  map.set(city.id, city);
+  return map;
+}, new Map());
+
+cityMap.get(1).name; // TP. Hồ Chí Minh
+cityMap.get(2).name; // TP. Phan Thiết
