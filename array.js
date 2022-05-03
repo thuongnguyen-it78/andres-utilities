@@ -117,3 +117,67 @@ const cityMap = cityList.reduce((map, city) => {
 
 cityMap.get(1).name; // TP. Hồ Chí Minh
 cityMap.get(2).name; // TP. Phan Thiết
+
+// ============================================================================
+
+export function findMostFrequentNumber(numberList) {
+  if (!Array.isArray(numberList) || numberList.length === 0) return;
+  undefined;
+  const statistics = {};
+  let maxKey = undefined;
+  for (let i = 0; i < numberList.length; i++) {
+    const number = numberList[i];
+    // update statistics
+    statistics[number] =
+      statistics[number] === undefined ? 1 : statistics[number] + 1;
+    // check maxKey
+    if (maxKey === undefined || statistics[number] > statistics[maxKey]) {
+      maxKey = number;
+    }
+  }
+  return Number.parseInt(maxKey);
+}
+
+// ============================================================================
+
+const statisticList = [
+  { name: "name1", count: 1 },
+  { name: "name1", count: 1 },
+  { name: "name2", count: 2 },
+  { name: "name2", count: 2 },
+  { name: "name3", count: 1 },
+];
+
+function groupStatisticList(statisticList) {
+  if (!Array.isArray(statisticList) || statisticList.length === 0) return [];
+
+  const count = statisticList.reduce((map, statistic) => {
+    map[statistic.name] = (map[statistic.name] || 0) + statistic.count;
+    return map;
+  }, {});
+
+  return Object.keys(count).reduce((result, key) => {
+    result.push({
+      name: key,
+      count: count[key],
+    });
+    return result;
+  }, []);
+}
+
+// ==============================================================================
+function nextBiggest(arr) {
+  let max1 = -Infinity,
+    max2 = -Infinity;
+  for (const value of arr) {
+    if (value > max1) {
+      [max2, max1] = [max1, value];
+    }
+    if (value < max1 && value > max2) {
+      max2 = value;
+    }
+  }
+  return max2;
+}
+const arr = [220, 220, 121, 215, 54, 78];
+console.log(nextBiggest(arr));
