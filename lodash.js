@@ -18,7 +18,7 @@
 import _ from "lodash";
 
 const integerList = [100, -100, 20, 10, 3, 29];
-const isOdd = (number) => number % 2 !== 0;
+const isOdd = (number) => number % 2 !== 0; 
 // const evenNumberList = integerList.filter(_.negate(isOdd))
 // const oddNumberList = integerList.filter(isOdd)
 
