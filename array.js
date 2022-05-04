@@ -183,6 +183,7 @@ const arr = [220, 220, 121, 215, 54, 78];
 console.log(nextBiggest(arr));
 
 // ==============================================================================
+
 // (numberList [2,3,4,5,6,2], target 5) => [0, 1]
 export const getPositionOne = (numberList, target) => {
   for (let i = 0; i < numberList.length; i++) {
@@ -205,4 +206,18 @@ export const getPositionTwo = (numberList, target) => {
 
     visited[currentValue] = i;
   }
+};
+
+// ==============================================================================
+// const list = [1, 2, 3, 4, 1, 2, 5, 2]
+
+// const newList = [[1, 1], [2, 2, 2], [3], [4], [5]]
+
+export const transformList = (list) => {
+  const newList = list.reduce((result, item) => {
+    result[item] ? result[item].push(item) : (result[item] = [item]);
+    return result;
+  }, {});
+
+  return Object.values(newList);
 };
