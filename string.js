@@ -42,4 +42,78 @@ export const truncate = (text, maxlength) => {
   if (text.length <= maxlength) return text;
   const shortStr = text.slice(0, maxlength - 1);
   return `${shortStr}\u2026`;
+};
+
+// ================================================================
+function getOpenBracket(closingBracket) {
+  if (closingBracket === "]") return "[";
+  if (closingBracket === "}") return "{";
+  if (closingBracket === ")") return "(";
+
+  return undefined;
 }
+
+function isValidBracketPairs(str) {
+  if (str === "") return true;
+
+  const OPENING_BRACKETS = ["[", "{", "("];
+  const CLOSING_BRACKETS = ["]", "}", ")"];
+  const stack = [];
+
+  for (let i = 0; i < str.length; i++) {
+    const character = str[i];
+    console.log(character);
+
+    if (OPENING_BRACKETS.includes(character)) {
+      stack.push(character);
+      continue;
+    }
+
+    if (CLOSING_BRACKETS.includes(character)) {
+      const openBracket = getOpenBracket(character);
+      if (stack[stack.length - 1] !== openBracket) return false;
+
+      // Otherwise, remove the top bracket pair
+      stack.pop();
+    }
+  }
+
+  return stack.length === 0;
+}
+
+
+// function isValidBracketPairs(str) {
+//   // your code here
+//    const pairs = {
+//         ')': '(',
+//         ']': '[',
+//         '}': '{'
+//     }
+//     let bracket;
+//     const stack = [];
+
+//     for (let i = 0; i < str.length; ++i) {
+
+//         bracket = str[i];
+
+//         switch (bracket) {
+//             case '(':
+//             case '[':
+//             case '{':
+//                 stack.push(bracket);
+//                 break;
+//             case ')':
+//             case ']':
+//             case '}':
+//                 if (stack[stack.length - 1] !== pairs[bracket]) {
+//                     return false;
+//                 }
+//                 stack.pop();
+//                 break;
+//             default:
+//                 break;
+//         }
+//     }
+
+//     return stack.length === 0;
+// }
