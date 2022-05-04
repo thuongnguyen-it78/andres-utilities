@@ -181,3 +181,28 @@ function nextBiggest(arr) {
 }
 const arr = [220, 220, 121, 215, 54, 78];
 console.log(nextBiggest(arr));
+
+// ==============================================================================
+// (numberList [2,3,4,5,6,2], target 5) => [0, 1]
+export const getPositionOne = (numberList, target) => {
+  for (let i = 0; i < numberList.length; i++) {
+    for (let j = i + 1; j < numberList.length; j++) {
+      if (numberList[i] + numberList[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+};
+
+export const getPositionTwo = (numberList, target) => {
+  const visited = {};
+  for (let i = 0; i < numberList.length; i++) {
+    const currentValue = numberList[i];
+    const remainValue = target - numberList[i];
+    if (visited[remainValue] !== undefined) {
+      return [i, visited[remainValue]];
+    }
+
+    visited[currentValue] = i;
+  }
+};
