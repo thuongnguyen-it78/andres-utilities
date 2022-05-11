@@ -1,6 +1,23 @@
 export const insertionSort = () => {};
 
-export const selectionSort = () => {};
+export const selectionSort = (numberList) => {
+  if (!Array.isArray(numberList) || numberList.length === 0) return numberList;
+
+  for (let i = numberList.length; i > 0; i--) {
+    let max = numberList[0];
+    let index = 0;
+    for (let j = 1; j < i; j++) {
+      if (numberList[j] > max) {
+        max = numberList[j];
+        index = j;
+      }
+    }
+    numberList.splice(index, 1);
+    numberList.push(max)
+  }
+
+  return numberList
+};
 
 export const buddleSort = (numberList) => {
   // Idea: Put the biggest element to the top of the array in each loop
