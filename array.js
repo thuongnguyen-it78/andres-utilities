@@ -221,3 +221,38 @@ export const transformList = (list) => {
 
   return Object.values(newList);
 };
+
+// ==============================================================================
+export const partition = (array, condition) => {
+  return array.reduce(
+    (acc, current) => {
+      acc[condition(current) ? 0 : 1].push(current);
+      return acc;
+    },
+    [[], []]
+  );
+};
+
+partition([1, 2, 3, 4, 5], (item) => item % 2);
+
+// ==============================================================================
+export const average = (...arg) =>
+  arg.reduce((acc, current) => acc + current) / arg.length;
+
+average(1, 2, 3, 4, 5);
+
+// ==============================================================================
+export const getMinMax = (arr) => [Math.min(...arr), Math.max(...arr)];
+
+getMinMax([1, 2, 3, 4, 5]);
+
+// ==============================================================================
+export const wait = (time) =>
+  new Promise((resolve) => setTimeout(resolve, time * 1000));
+
+wait(1);
+
+// ==============================================================================
+export const removeFalsy = (arr) => arr.filter(Boolean);
+
+removeFalsy([0, 1, false, "", 9]);
